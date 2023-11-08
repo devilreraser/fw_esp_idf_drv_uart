@@ -18,7 +18,9 @@
 
 #include "driver/gpio.h"
 
-#include "drv_stdio_if.h"
+#if CONFIG_DRV_STDIO_USE
+#include "drv_stdio.h"
+#endif
 
 /* *****************************************************************************
  * Configuration Definitions
@@ -231,6 +233,7 @@ size_t drv_uart_send_data(int uart_num, uint8_t* pData, size_t nSize)
 }
 size_t drv_uart_read_data(int uart_num, uint8_t* pData, size_t nSize, TickType_t ticks_to_wait)
 {
+    #if CONFIG_DRV_STDIO_USE
     if ((uart_num == UART_NUM_0) && drv_stdio_is_redirect_uart0())
     {
         //use stream from stdio
@@ -243,6 +246,7 @@ size_t drv_uart_read_data(int uart_num, uint8_t* pData, size_t nSize, TickType_t
         return nRedirectBytes;
     }
     else
+    #endif
     {
         return uart_read_bytes(uart_num, pData, nSize, ticks_to_wait);
     }

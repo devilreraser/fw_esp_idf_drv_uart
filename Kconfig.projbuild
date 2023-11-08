@@ -1,3 +1,7 @@
 menu "Component drv_uart Configuration"
 
+    config DRV_UART_USE
+        bool "Use drv_uart component"
+        default y
+        
 endmenu
