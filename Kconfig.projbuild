@@ -4,4 +4,128 @@ menu "Component drv_uart Configuration"
         bool "Use drv_uart component"
         default y
         
+    config DRV_UART_GPIO_RANGE_NO_CHANGE
+        int "GPIO No Change"
+        default -1
+
+    config DRV_UART_GPIO_RANGE_MIN
+        int "GPIO Minimum"
+        default 0
+
+    config DRV_UART_GPIO_OUT_RANGE_MAX
+        int "GPIO Maximum"
+        default 33 if IDF_TARGET_ESP32
+        default 46 if IDF_TARGET_ESP32S2
+        default 19 if IDF_TARGET_ESP32C3
+        default 48 if IDF_TARGET_ESP32S3
+
+    config DRV_UART_GPIO_IN_RANGE_MAX
+        int "GPIO Maximum"
+        default 39 if IDF_TARGET_ESP32
+        default 46 if IDF_TARGET_ESP32S2
+        default 19 if IDF_TARGET_ESP32C3
+        default 48 if IDF_TARGET_ESP32S3
+    
+        config DRV_UART_TXD0
+        int "Uart0 TXD"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_OUT_RANGE_MAX
+        default 1 if IDF_TARGET_ESP32
+        default 43 if IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+
+    config DRV_UART_RXD0
+        int "Uart0 RXD"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_IN_RANGE_MAX
+        default 3 if IDF_TARGET_ESP32
+        default 44 if IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+        
+    config DRV_UART_RTS0
+        int "Uart0 RTS"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_OUT_RANGE_MAX
+        default 22 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 2 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+    
+    config DRV_UART_TXD1
+        int "Uart1 TXD"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_OUT_RANGE_MAX
+        default 23 if ESP_BOARD_EP00 && IDF_TARGET_ESP32
+        default 1 if ESP_BOARD_EP00 && IDF_TARGET_ESP32S3
+        default 25 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 17 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+
+    config DRV_UART_RXD1
+        int "Uart1 RXD"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_IN_RANGE_MAX
+        default 21 if ESP_BOARD_EP00 && IDF_TARGET_ESP32
+        default 42 if ESP_BOARD_EP00 && IDF_TARGET_ESP32S3
+        default 34 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 6 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+                
+    config DRV_UART_RTS1
+        int "Uart1 RTS"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_OUT_RANGE_MAX
+        default 2 if ESP_BOARD_EP00 && IDF_TARGET_ESP32
+        default 48 if ESP_BOARD_EP00 && IDF_TARGET_ESP32S3
+        default 27 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 8 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+
+    config DRV_UART_TXD2
+        int "Uart2 TXD"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_OUT_RANGE_MAX
+        default 15 if ESP_BOARD_EP00 && IDF_TARGET_ESP32
+        default 47 if ESP_BOARD_EP00 && IDF_TARGET_ESP32S3
+        default 26 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 18 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+
+    config DRV_UART_RXD2
+        int "Uart2 RXD"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_IN_RANGE_MAX
+        default 16 if ESP_BOARD_EP00 && IDF_TARGET_ESP32
+        default 36 if ESP_BOARD_EP00 && IDF_TARGET_ESP32S3
+        default 36 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 5 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+                
+    config DRV_UART_RTS2
+        int "Uart2 RTS"
+        depends on DRV_UART_USE
+        range DRV_UART_GPIO_RANGE_NO_CHANGE DRV_UART_GPIO_OUT_RANGE_MAX
+        default 12 if ESP_BOARD_EP00 && IDF_TARGET_ESP32
+        default 20 if ESP_BOARD_EP00 && IDF_TARGET_ESP32S3
+        default 21 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32
+        default 42 if ESP_BOARD_ECM00 && IDF_TARGET_ESP32S3
+        default -1
+        help
+            Select GPIO Pin Number.
+            
 endmenu
